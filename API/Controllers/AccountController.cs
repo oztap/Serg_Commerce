@@ -45,7 +45,7 @@ namespace API.Controllers
             return new UserDto
             {
                 Email = user.Email,
-                Token = "z;!v]~R`>u&Wtjbw=q*GV~8e*+<;s2]NFCUSP=%3+q&g{ux3NYM5H5G,x~j*h{WK",
+                Token = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJvYkB0ZXN0LmNvbSIsImdpdmVuX25hbWUiOiJCb2IiLCJuYmYiOjE1ODA1NTcxMDEsImV4cCI6MTU4MTE2MTkwMSwiaWF0IjoxNTE2MjM5MDIyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDEifQ.gk0lwMJRTjgLQN00eZpRiqjkCdEhbcvx4w73Hgz7Tq0OQo4npw4Qq512WSF1tQGwBcVBdtXk9I_H83AyhhBReQ",
                 DisplayName = user.DisplayName
             };
         }
@@ -76,20 +76,20 @@ namespace API.Controllers
             return new UserDto
             {
                 DisplayName = user.DisplayName,
-                Token = "z;!v]~R`>u&Wtjbw=q*GV~8e*+<;s2]NFCUSP=%3+q&g{ux3NYM5H5G,x~j*h{WK",
+                Token = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJvYkB0ZXN0LmNvbSIsImdpdmVuX25hbWUiOiJCb2IiLCJuYmYiOjE1ODA1NTcxMDEsImV4cCI6MTU4MTE2MTkwMSwiaWF0IjoxNTE2MjM5MDIyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDEifQ.gk0lwMJRTjgLQN00eZpRiqjkCdEhbcvx4w73Hgz7Tq0OQo4npw4Qq512WSF1tQGwBcVBdtXk9I_H83AyhhBReQ",
                 Email = user.Email
             };
         }
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
             var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
             return new UserDto
             {
-                DisplayName = user.DisplayName,
-                Token = "z;!v]~R`>u&Wtjbw=q*GV~8e*+<;s2]NFCUSP=%3+q&g{ux3NYM5H5G,x~j*h{WK",
-                Email = user.Email
+                Email = user.Email,
+                Token = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJvYkB0ZXN0LmNvbSIsImdpdmVuX25hbWUiOiJCb2IiLCJuYmYiOjE1ODA1NTcxMDEsImV4cCI6MTU4MTE2MTkwMSwiaWF0IjoxNTE2MjM5MDIyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDEifQ.gk0lwMJRTjgLQN00eZpRiqjkCdEhbcvx4w73Hgz7Tq0OQo4npw4Qq512WSF1tQGwBcVBdtXk9I_H83AyhhBReQ",
+                DisplayName = user.DisplayName
             };
         }
 
@@ -99,14 +99,14 @@ namespace API.Controllers
             return await _userManager.FindByEmailAsync(email) != null;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("address")]
         public async Task<ActionResult<AddressDto>> GetUserAddress()
         {
             var user = await _userManager.FindUserByClaimPrincipleWithAddressAsync(User);
             return _mapper.Map<Address, AddressDto>(user.Address);
         }
-        //[Authorize]
+        [Authorize]
         [HttpPut("address")]
         public async Task<ActionResult<AddressDto>> UpdateUserAddress(AddressDto address)
         {

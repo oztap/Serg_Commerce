@@ -57,7 +57,7 @@ namespace API.Controllers
 
         }
 
-        [HttpGet("deliveryMethod")]
+        [HttpGet("deliveryMethods")]
 
         public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethods()
         {

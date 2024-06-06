@@ -1,7 +1,7 @@
 [
   {
     "Id": 1,
-    "ShortName": "UPS1",
+    "shortName": "UPS1",
     "Description": "Fastest delivery time",
     "DeliveryTime": "1-2 Days",
     "Price": 10
